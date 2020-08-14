@@ -55,6 +55,12 @@ class RequestRulesFill
         return $this;
     }
 
+    /**
+     * @param string $field
+     * @param mixed  ...$rules
+     *
+     * @return $this
+     */
     public function addRuleToField(string $field, ...$rules)
     {
         $this->rules[$field] = array_unique(array_merge($this->rules[$field], $rules));
