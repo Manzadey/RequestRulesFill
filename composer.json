@@ -1,0 +1,29 @@
+{
+  "name": "manzadey/request-rules-fill",
+  "description": "Class for create rules for Laravel requests",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Andrey Manzadey",
+      "email": "andrey.manzadey@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Manzadey\\RequestRulesFill\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Manzadey\\RequestRulesFill\\Test\\": "tests"
+    }
+  },
+  "require": {
+    "php": ">=7.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "9.3.*"
+  }
+}
