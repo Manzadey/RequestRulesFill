@@ -1,6 +1,6 @@
 # RequestFillRules
 
-Данный класс предназначен для красивого `(ИМХО) и упрощенного заполнения правил валидации в реквестах.
+Данный класс предназначен для красивого (ИМХО) и упрощенного заполнения правил валидации в реквестах.
 
 Установка:
 ```bash
@@ -45,7 +45,7 @@ class ArticleStoreRequest extends FormRequest
         $rules->fields('show', 'top')->rule('nullable', 'boolean');
         $rules->fields('name')->rule('required', 'string', 'min:3');
         $rules->fields('slug')->rule('nullable', 'string', 'alpha_dash', 'min:3', 'unique:articles');
-        $rules->fields('description', 'description_short',)->rule('nullable', 'string');
+        $rules->fields('description', 'description_short')->rule('nullable', 'string');
         $this->rules = $rules;
 
         return $rules->get();
