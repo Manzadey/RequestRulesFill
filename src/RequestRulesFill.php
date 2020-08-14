@@ -29,7 +29,7 @@ class RequestRulesFill
     /**
      * @param mixed ...$rules
      *
-     * @return self
+     * @return $this
      */
     public function rule(...$rules) : self
     {
@@ -40,10 +40,24 @@ class RequestRulesFill
         return $this;
     }
 
+    /**
+     * @param string $field
+     * @param string $ruleReplaced
+     * @param        $rule
+     *
+     * @return $this
+     */
     public function replaceRule(string $field, string $ruleReplaced, $rule) : self
     {
         $key = array_search($ruleReplaced, $this->rules[$field], true);
         $this->rules[$field][$key] = $rule;
+
+        return $this;
+    }
+
+    public function addRuleToField(string $field, ...$rules)
+    {
+        $this->rules[$field] = array_unique(array_merge($this->rules[$field], $rules));
 
         return $this;
     }
