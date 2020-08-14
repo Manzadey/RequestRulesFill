@@ -28,7 +28,7 @@ $rules->get();
 
 
 Наглядный пример использования данного класса:
-Создаем класс `ArticleStoreRequest`:
+Создаем класс `ArticleStoreRequest`, в нем создадим метод `makeRules` и создадим новый объект `RequestRulesFill`:
 ```php
 namespace App\Http\Requests\Admin\Article;
 
@@ -37,18 +37,20 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ArticleStoreRequest extends FormRequest
 {
-    protected $rules;
-
     public function rules() : array
+    {
+        return $this->makeRules()->get();
+    }
+
+    public function makeRules() : RequestRulesFill
     {
         $rules = new RequestRulesFill();
         $rules->fields('show', 'top')->rule('nullable', 'boolean');
         $rules->fields('name')->rule('required', 'string', 'min:3');
         $rules->fields('slug')->rule('nullable', 'string', 'alpha_dash', 'min:3', 'unique:articles');
-        $rules->fields('description', 'description_short')->rule('nullable', 'string');
-        $this->rules = $rules;
-
-        return $rules->get();
+         $rules->fields('description', 'description_short')->rule('nullable', 'string');
+         
+        return $rules;
     }
 }
 ```
@@ -63,10 +65,12 @@ class ArticleUpdateRequest extends ArticleStoreRequest
 {
     public function rules() : array
     {
-        parent::rules();
-        $this->rules->replaceRule('slug', 'unique:articles', Rule::unique('articles')->ignore($this->route('article')->id));
-
-        return $this->rules->get();
+        return $this->makeRules()->get();
     }
+
+    public function makeRules() : RequestRulesFill
+        {
+            return parent::makeRules()->replaceRule('slug', 'unique:articles', Rule::unique('articles')->ignore($this->route('article')->id));
+        }
 }
 ```
