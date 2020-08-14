@@ -40,6 +40,14 @@ class RequestRulesFill
         return $this;
     }
 
+    public function replaceRule(string $field, string $ruleReplaced, $rule) : self
+    {
+        $key = array_search($ruleReplaced, $this->rules[$field], true);
+        $this->rules[$field][$key] = $rule;
+
+        return $this;
+    }
+
     /**
      * @return array
      */
