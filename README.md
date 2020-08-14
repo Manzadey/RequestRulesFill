@@ -63,6 +63,7 @@ class ArticleUpdateRequest extends ArticleStoreRequest
 {
     public function rules() : array
     {
+        parent::rules();
         $this->rules->replaceRule('slug', 'unique:articles', Rule::unique('articles')->ignore($this->route('article')->id));
 
         return $this->rules->get();
