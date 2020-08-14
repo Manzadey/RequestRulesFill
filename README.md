@@ -21,6 +21,10 @@ $rules->fields('name', 'description')->rule('string', 'required');
 ```php
 $rules->replaceRule('slug', 'unique:articles', Rule::unique('articles')->ignore($this->route('article')->id));
 ```
+Добавляем к полю правило:
+```php
+$rules->addRuleToField('slug', 'string', 'min:2');
+```
 Выводим правила в виде массива:
 ```php
 $rules->get();
