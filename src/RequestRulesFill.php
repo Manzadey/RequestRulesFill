@@ -2,6 +2,11 @@
 
 namespace Manzadey\RequestRulesFill;
 
+/**
+ * Class RequestRulesFill
+ *
+ * @package Manzadey\RequestRulesFill
+ */
 class RequestRulesFill
 {
     /**
@@ -74,5 +79,45 @@ class RequestRulesFill
     public function get() : array
     {
         return $this->rules;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray() : array
+    {
+        return $this->get();
+    }
+
+    /**
+     * @return string
+     */
+    public function getFields() : string
+    {
+        return $this->fields;
+    }
+
+    /**
+     * @param string $fields
+     */
+    public function setFields(string $fields) : void
+    {
+        $this->fields = $fields;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRules() : array
+    {
+        return $this->rules;
+    }
+
+    /**
+     * @param array $rules
+     */
+    public function setRules(array $rules) : void
+    {
+        $this->rules = $rules;
     }
 }
