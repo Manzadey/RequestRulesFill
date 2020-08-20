@@ -34,7 +34,7 @@ class RequestRulesFill
     public function rule(...$rules) : self
     {
         foreach ($this->fields as $field) {
-            $this->rules[$field] = $rules;
+            $this->rules[$field] = isset($this->rules[$field]) ? array_merge($this->rules[$field], $rules) : $rules;;
         }
 
         return $this;
